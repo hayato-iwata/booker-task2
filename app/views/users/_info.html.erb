@@ -1,0 +1,39 @@
+<table class='table'>
+  <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
+  <tr>
+	  <th>name</th>
+	  <th><%= user.name %></th>
+  </tr>
+  <tr>
+	  <th>introduction</th>
+	  <th><%= user.introduction %></th>
+  </tr>
+  <tr>
+	  <th>コメント数</th>
+	  <th><%= user.book_comments.count %></th>
+  </tr>
+  <tr>
+    <th>フォロー数</th> 
+    <th><%= link_to "#{user.follower.count}", user_following_path(user.id) %><%#= user.follower.count %></th>
+  </tr>
+  <tr>
+    <th>フォロワー数</th>
+    <th><%=link_to "#{user.followed.count}", user_followed_path(user.id) %><%#= user.followed.count %></th>
+  </tr>
+  <% unless user == current_user %>
+    <tr>
+      <!--自分は表示しない-->
+      <% if current_user.following?(user) %>
+        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :post, class: "btn btn-info", style: "margin-left: 30px;" %>
+      <% else %>
+        <%= link_to 'フォローする', follow_path(user.id), method: :post, class: "btn btn-success", style: "margin-left: 30px;" %>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+　
+<div class='row'>
+  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
+    <i class="fas fa-user-cog"></i>
+  <% end %>
+</div>

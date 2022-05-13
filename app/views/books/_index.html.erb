@@ -1,0 +1,24 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Body</th>
+      <th>コメント数</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% books.each do |book| %>
+      <tr>
+        <td><%= link_to(current_user) do %>
+          <%= image_tag current_user.get_profile_image, size:'50x50' %>
+          <% end %>
+        </td>
+        <td><%= link_to book.title,book, class: "book_#{book.id}" %></td>
+        <td><%= book.body %></td>
+        <td><%= book.book_comments.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
