@@ -1,0 +1,5 @@
+<%= form_with(model:[room, message], url: messages_path, id: "new_body", local: false) do |f| %>
+  <%= f.hidden_field :room_id, :value => @room_id %>
+  <%= f.text_area :body %>
+  <%= f.submit "送信する" %>
+<% end %>

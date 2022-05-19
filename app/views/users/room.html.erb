@@ -1,0 +1,15 @@
+<!--フォロー一覧-->
+
+<div class="body">
+  <div class="container">
+    <div>
+      <h1>メッセージ一覧</h1>
+      <div id="chat_area">
+        <%= render "messages/chat_list", messages: @messages %>
+      </div>
+      <div id="chat_form">
+        <%= render "messages/chat_form", room: @room, message: @message %>
+      </div>
+    </div>
+  </div>
+</div>
